@@ -24,10 +24,14 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/makeentry', async (req, res) => {
-    const entry = new Entry({ subject: 'kaballas', body: 'kaballas' })
-    await entry.save();
-    res.send(entry)
+app.get('/entries', async (req, res) => {
+    const entries = await Entry.find({})
+    res.render('entries/index', { entries })
+})
+
+app.get('/entries/:id', async (req, res) => {
+    const entry = await Entry.findById(req.params.id)
+    res.render('entries/show', { entry })
 })
 
 app.listen(3000), () => {

@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const EntrySchema = new Schema({
-    id: Number,
     date: String,
+    date_num: String,
     tag: String,
     rating: String,
     subject: String,
