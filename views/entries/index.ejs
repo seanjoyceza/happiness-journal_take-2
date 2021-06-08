@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('/layouts/boilerplate') %> 
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entries</title>
-</head>
 
-<body>
-    <h1>All Entries</h1>
-    <ul>
-        <% for (let entry of entries) { %> 
-            <li> <a href="/entries/<%= entry.id %>"><%= entry.subject %></a> </li> 
-             <hr>
-        <% } %> 
-    </ul>
-</body>
-
-</html>
+<h1>All Entries</h1>
+<div>
+    <a href="/entries/new">Add Entry</a>
+</div>
+<ul>
+    <% for (let entry of entries) { %> 
+        <li> <a href="/entries/<%= entry.id %>"><%= entry.subject %></a> </li> 
+            <hr>
+    <% } %> 
+</ul>
