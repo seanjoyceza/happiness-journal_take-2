@@ -43,10 +43,14 @@ app.get('/entries/new', (req, res) => {
     res.render('entries/new')
 })
 
-app.post('/entries', async (req, res) => {
-    const entry = new Entry(req.body.entry);
-    await entry.save();
-    res.redirect(`/entries/${entry._id}`);
+app.post('/entries', async (req, res, next) => {
+    try {
+        const entry = new Entry(req.body.entry);
+        await entry.save();
+        res.redirect(`/entries/${entry._id}`);
+    } catch (e) {
+        next(e)
+    }
 })
 
 
@@ -76,6 +80,10 @@ app.delete('/entries/:id', async (req, res) => {
     const { id } = req.params;
     const entry = await Entry.findByIdAndDelete(id)
     res.redirect('/entries')
+})
+
+app.use((err, req, res, next) => {
+    res.send('oh boy, something went wrong')
 })
 
 app.listen(3000), () => {

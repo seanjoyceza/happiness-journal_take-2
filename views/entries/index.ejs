@@ -3,11 +3,18 @@
 
 <h1>All Entries</h1>
 <div>
-    <a href="/entries/new">Add Entry</a>
 </div>
-<ul>
-    <% for (let entry of entries) { %> 
-        <li> <a href="/entries/<%= entry.id %>"><%= entry.subject %></a> </li> 
-            <hr>
-    <% } %> 
-</ul>
+<% for (let entry of entries) { %> 
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= entry.date %></h5>
+                    <h5 class="card-title"><%= entry.subject %></h5>
+                    <p class="card-text"><%= entry.tag %></p>
+                    <a href="entries/<%=entry._id%>" class="btn btn-primary">View <%=entry.subject%> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %> 

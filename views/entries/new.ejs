@@ -1,26 +1,49 @@
 <% layout('/layouts/boilerplate') %>
 
-    <form action="/entries" method="POST">
-        <div class="">
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="entry[date_num]" value="2021-06-04" min="2000-01-01" max="2100-12-31">
+    <div class="row">
+        <h1 class="text-center">New Entry</h1>
+        <div class="col-6 offset-3">
+            <form action="/entries" method="POST" novalidate class="validated-form">
+                <div class="mb-3">
+                    <label class="form-label" for="date">Date</label>
+                    <input class="form-control" type="date" id="date" name="entry[date_num]" value="2021-06-04"
+                        min="2000-01-01" max="2100-12-31" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="subject">Subject</label>
+                    <input class="form-control" type="text" id="subject" name="entry[subject]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="body">Body</label>
+                    <textarea class="form-control" type="text" id="body" name="entry[body]" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="rating">Rating</label>
+                    <input class="form-control" type="number" id="rating" name="entry[rating]" min="0" max="10" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="tag">Tag</label>
+                    <input class="form-control" type="text" id="tag" name="entry[tag]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Add Entry</button>
+                </div>
+            </form>
         </div>
-        <div class="">
-            <label for="subject">Subject:</label>
-            <input type="text" id="subject" name="entry[subject]">
-        </div>
-        <div class="">
-            <label for="body">Body:</label>
-            <input type="text" id="body" name="entry[body]">
-        </div>
-        <div class="">
-            <label for="rating">Rating:</label>
-            <input type="number" id="rating" name="entry[rating]" min="0" max="10">
-        </div>
-        <div class="">
-            <label for="tag">Tag:</label>
-            <input type="text" id="tag" name="entry[tag]">
-        </div>
-        <button>Add Entry</button>
-    </form>
-    <a href="/entries">All Entries</a>
+    </div>
+

@@ -1,14 +1,22 @@
 <% layout('/layouts/boilerplate') %>
 
-    <h1> <%= entry.date_num %> </h1>
-    <h2> <%= entry.subject %> </h2>
-    <h3> <%= entry.body %> </h3>
-    <p>
-        <form action="/entries/<%=entry._id%>?_method=DELETE" method="POST">
-        <button>Delete</button>
-        </form>
-    </p>
-    <footer>
-        <a href="/entries/<%= entry._id %>/edit ">Edit Entry</a>
-        <a href="/entries">All Entries</a>
-    </footer>
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3 class="card-title"><%= entry.date %></h3>
+                <h5 class="card-title"><%= entry.subject %> </h5>
+                <p class="card-text"><%= entry.body %> </p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted"><%= entry.tag %> </li>
+                <li class="list-group-item text-muted"><%= entry.rating %> </li>
+            </ul>
+            <div class="card-body">
+                <a class="card-link btn btn-info" href="/entries/<%= entry._id %>/edit ">Edit Entry</a>
+                <form class="d-inline" action="/entries/<%=entry._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
