@@ -32,6 +32,7 @@ router.get('/new', (req, res) => {
 router.post('/', validateEntry, catchAsync(async (req, res, next) => {
     const entry = new Entry(req.body.entry);
     await entry.save();
+    req.flash('success', 'Successfully made a new entry!')
     res.redirect(`/entries/${entry._id}`);
 }))
 
@@ -39,12 +40,20 @@ router.post('/', validateEntry, catchAsync(async (req, res, next) => {
 //show entry
 router.get('/:id', catchAsync(async (req, res) => {
     const entry = await Entry.findById(req.params.id)
+    if (!entry) {
+        req.flash('error', 'Cannot find that entry!')
+        return res.redirect('/entries');
+    }
     res.render('entries/show', { entry })
 }))
 
 //edit entry
 router.get('/:id/edit', catchAsync(async (req, res) => {
     const entry = await Entry.findById(req.params.id)
+    if (!entry) {
+        req.flash('error', 'Cannot find that entry!')
+        return res.redirect('/entries');
+    }
     res.render('entries/edit', { entry })
 }))
 
@@ -53,6 +62,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 router.put('/:id', validateEntry, catchAsync(async (req, res) => {
     const { id } = req.params;
     const entry = await Entry.findByIdAndUpdate(id, { ...req.body.entry })
+    req.flash('success', 'Successfully updated entry!')
     res.redirect(`/entries/${entry._id}`);
 }))
 
@@ -61,6 +71,7 @@ router.put('/:id', validateEntry, catchAsync(async (req, res) => {
 router.delete('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     const entry = await Entry.findByIdAndDelete(id)
+    req.flash('success', 'Successfully deleted entry!')
     res.redirect('/entries')
 }))
 

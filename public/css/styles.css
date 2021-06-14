@@ -1,0 +1,196 @@
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.navbar-one {
+    padding: 12px 0;
+}
+
+.navbar-two {
+    padding: 8px 0;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.95);
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%);
+}
+
+button {
+    font-weight: 600;
+    border-radius: .25rem;
+    border: 1px solid #ced4da !important;
+}
+
+/* form > button {
+    background-color: #ffffff !important;
+    color: #6c757d !important;
+} */
+
+/* form > input {
+    background-color: #ffffff !important;
+    color: #6c757d !important;
+} */
+
+
+/* .image {
+    border-radius: .25em;
+} */
+
+
+/* h4 {
+    padding-top: 1rem;
+} */
+
+/* .homepage_entry {
+  padding-top: 1rem;
+  padding-bottom: 0rem; 
+} */
+
+/* .breadcrumb {
+    margin: auto;
+} */
+
+
+.rounded-pill {
+    margin-left: 1em;
+}
+
+.logout:hover {
+    color: rgb(255, 0, 106) !important;
+}
+
+.radios {
+  font-size: 0.9em !important;
+}
+
+ul {list-style-type: none;}
+
+/* Month header */
+.month {
+  padding: 2em 2em;
+  width: 100%;
+  background: #3d405b;
+  text-align: center;
+  margin-top: 2em;
+}
+
+/* Month list */
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+  margin: 0;
+  padding: .5em;
+  background-color:#ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+  border-color: red !important;
+}
+
+/* Days (1-31) */
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:.9rem;
+  color: rgb(0, 0, 0);
+}
+
+/* Highlight the "current" day */
+
+.selectedDay {
+  background-color: #0d6efd !important;
+  color: white !important;
+}
+
+.month {
+  background-color: rgb(24, 22, 22);
+}
+
+.eachDay {
+  margin-bottom: 0 !important;
+  padding: 0.5rem;
+  transition: color .2s;
+  transition: background-color .2s;
+  border-radius: 0.25rem;
+}
+
+.eachDay-has-entry {
+  float: left;
+  height: 5px;
+  width: 5px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+
+.eachDay:hover {
+  background-color: rgb(24, 22, 22);
+  cursor: pointer;
+  color: white;
+}
+
+.eachDay:hover .eachDay-has-entry {
+  background-color: white;
+}
+
+.twentyNine,
+.thirty,
+.thirtyOne {
+  pointer-events: none;
+  opacity: 0.6;
+  color: rgb(36, 35, 35) !important;
+} 
+
+/* .dot {
+  margin-right: 0.25rem;
+  display: inline-block !important;
+} */
+
+.entry_heading {
+  display: inline-block;
+  margin-right: 10px;
+}
+.entry_subheading {
+  display: inline-block;
+  padding-bottom: 5px !important;
+}
+
+.new_buton {
+  color: inherit !important;
+}
+
+
