@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
 const { entrySchema } = require('../schemas')
+const { isLoggedIn } = require('../middleware')
 
 const ExpressError = require('../utils/ExpressError')
 const Entry = require('../models/entry');
@@ -25,11 +26,12 @@ router.get('/', catchAsync(async (req, res) => {
 }))
 
 //new entry
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
+
     res.render('entries/new')
 })
 
-router.post('/', validateEntry, catchAsync(async (req, res, next) => {
+router.post('/', isLoggedIn, validateEntry, catchAsync(async (req, res, next) => {
     const entry = new Entry(req.body.entry);
     await entry.save();
     req.flash('success', 'Successfully made a new entry!')
@@ -48,7 +50,7 @@ router.get('/:id', catchAsync(async (req, res) => {
 }))
 
 //edit entry
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     const entry = await Entry.findById(req.params.id)
     if (!entry) {
         req.flash('error', 'Cannot find that entry!')
@@ -59,7 +61,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 
 
 //Update route
-router.put('/:id', validateEntry, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, validateEntry, catchAsync(async (req, res) => {
     const { id } = req.params;
     const entry = await Entry.findByIdAndUpdate(id, { ...req.body.entry })
     req.flash('success', 'Successfully updated entry!')
@@ -68,7 +70,7 @@ router.put('/:id', validateEntry, catchAsync(async (req, res) => {
 
 
 //delete route
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     const entry = await Entry.findByIdAndDelete(id)
     req.flash('success', 'Successfully deleted entry!')
