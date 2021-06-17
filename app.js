@@ -2,13 +2,14 @@ const express = require('express');
 const path = require('path')
 const mongoose = require('mongoose');
 const Entry = require('./models/entry');
-const { findById } = require('./models/entry');
+const { findById, getMaxListeners } = require('./models/entry');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
 const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')
 const { entrySchema } = require('./schemas')
-const entries = require('./routes/entries')
+const entryRoutes = require('./routes/entries')
+const userRoutes = require('./routes/users')
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -61,12 +62,21 @@ passport.serializeUser(User.serializeUser()); //store it
 passport.deserializeUser(User.deserializeUser()); //un-store it in session
 
 app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success'); //middleware so that we have local access to the flash in all our templates 
     res.locals.error = req.flash('error');
     next(); //remember to call next() on your middleware!
 })
 
-app.use('/entries', entries)
+//method to register user
+app.use('/fakeuser', async (req, res) => {
+    const user = new User({ email: 'sean@gmail.com', username: 'sean', });
+    const newUser = await User.register(user, 'chicken'); //creates a password for user and stores to database
+    res.send(newUser);
+})
+
+app.use('/entries', entryRoutes)
+app.use('/', userRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
