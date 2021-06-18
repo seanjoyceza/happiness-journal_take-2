@@ -1,92 +1,24 @@
 const express = require('express')
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
-const { entrySchema } = require('../schemas')
-const { isLoggedIn } = require('../middleware')
+const { isLoggedIn, validateEntry, isOwner } = require('../middleware')
+const entries = require('../controllers/entries')
 
-const ExpressError = require('../utils/ExpressError')
-const Entry = require('../models/entry');
+//router.route consolidates all routes with different verbs
+router.route('/')
+    .get(catchAsync(entries.index)) //index
+    .post(isLoggedIn, validateEntry, catchAsync(entries.createEntry)) //create entry
 
-const validateEntry = (req, res, next) => {
-    //now once the joi schema is defined, we just pass it through to be validated 
-    const { error } = entrySchema.validate(req.body)
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next()
-    }
-}
+router.route('/new')
+    .get(isLoggedIn, entries.renderNewForm) //new Entry
 
-const isOwner = async (req, res, next) => {
-    const { id } = req.params;
-    const entry = await Entry.findById(id)
-    if (!entry.author.equals(req.user._id)) {
-        req.flash('error', 'You do not have permission to do that!')
-        return res.redirect(`/entries/${entry._id}`);
-    } else {
-        next();
-    }
-}
+router.route('/:id/edit')
+    .get(isLoggedIn, isOwner, catchAsync(entries.renderEditForm)) //edit entry
 
 
-//all entries
-router.get('/', catchAsync(async (req, res) => {
-    const entries = await Entry.find({}).populate('author')
-    res.render('entries/index', { entries })
-}))
-
-//new entry
-router.get('/new', isLoggedIn, (req, res) => {
-    res.render('entries/new')
-})
-
-router.post('/', isLoggedIn, validateEntry, catchAsync(async (req, res, next) => {
-    const entry = new Entry(req.body.entry);
-    entry.author = req.user._id; //associates new campground with the current logged in user
-    await entry.save();
-    req.flash('success', 'Successfully made a new entry!')
-    res.redirect(`/entries/${entry._id}`);
-}))
-
-
-//show entry
-router.get('/:id', catchAsync(async (req, res) => {
-    let entry = await Entry.findById(req.params.id).populate('author')
-    if (!entry) {
-        req.flash('error', 'Cannot find that entry!')
-        return res.redirect('/entries');
-    }
-    res.render('entries/show', { entry })
-}))
-
-//edit entry
-router.get('/:id/edit', isLoggedIn, isOwner, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const entry = await Entry.findById(id)
-    if (!entry) {
-        req.flash('error', 'Cannot find that entry!')
-        return res.redirect('/entries');
-    }
-    res.render('entries/edit', { entry })
-}))
-
-
-//Update route
-router.put('/:id', isLoggedIn, isOwner, validateEntry, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const entry = await Entry.findByIdAndUpdate(id, { ...req.body.entry })
-    req.flash('success', 'Successfully updated entry!')
-    res.redirect(`/entries/${entry._id}`);
-}))
-
-
-//delete route
-router.delete('/:id', isLoggedIn, isOwner, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const entry = await Entry.findByIdAndDelete(id)
-    req.flash('success', 'Successfully deleted entry!')
-    res.redirect('/entries')
-}))
+router.route('/:id')
+    .get(catchAsync(entries.showEntry)) //show entry
+    .put(isLoggedIn, isOwner, validateEntry, catchAsync(entries.updateEntry))//Update route
+    .delete(isLoggedIn, isOwner, catchAsync(entries.deleteEntry)) //delete route
 
 module.exports = router;

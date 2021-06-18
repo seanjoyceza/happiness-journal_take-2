@@ -1,13 +1,9 @@
 const express = require('express');
 const path = require('path')
 const mongoose = require('mongoose');
-const Entry = require('./models/entry');
-const { findById, getMaxListeners } = require('./models/entry');
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
-const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')
-const { entrySchema } = require('./schemas')
 const entryRoutes = require('./routes/entries')
 const userRoutes = require('./routes/users')
 const session = require('express-session')
