@@ -194,3 +194,16 @@ ul {list-style-type: none;}
 }
 
 
+/* Login Form */
+.btn-lg {
+  border-radius: 6px;
+}
+
+
+.hj-logo {
+    color: #1778F2;
+}
+
+.hj-logo-text {
+    font-size: 24px;
+}
