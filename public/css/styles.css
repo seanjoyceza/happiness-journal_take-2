@@ -195,10 +195,10 @@ ul {list-style-type: none;}
 
 
 /* Login Form */
-.btn-lg {
+.btn-block {
   border-radius: 6px;
+  background-color: #0d6efd;
 }
-
 
 .hj-logo {
     color: #1778F2;
@@ -206,4 +206,30 @@ ul {list-style-type: none;}
 
 .hj-logo-text {
     font-size: 24px;
+}
+
+.login {
+    background-color: #f0f2f5;
+}
+
+.footer {
+    background-color: #ffffff;
+}
+
+.login-register {
+    background-color: #42b72a;
+    color: white;
+}
+
+.login-register:hover {
+    background-color: #189200;
+    color: white;
+}
+
+.footer-text {
+    color: #737373;
+}
+
+.card {
+    max-width: 400px;
 }
