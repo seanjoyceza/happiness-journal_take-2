@@ -12,37 +12,6 @@
 </head>
 
 <body class='d-flex flex-column vh-100'>
-    <div class="container-fluid p-0">
-        <nav class="navbar-one navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">Journal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/entries">All Entries</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Settings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Help</a>
-                        </li>
-                    </ul>
-
-                    <% if (!currentUser) { %>
-                        <a class="nav-link logout btn navbar-text" href="/login">Log In</a>
-                        <a class="nav-link logout btn navbar-text" href="/register">Register</a>
-                        <% } else { %>
-                            <a class="nav-link logout btn navbar-text" href="/logout">Log Out</a>
-                            <% } %>
-                </div>
-            </div>
-        </nav>
-    </div>
     <main class="container mt-5">
         <%- include('../partials/flash') %>
             <div class="container d-flex justify-content-center align-items-center mt-5">
@@ -100,6 +69,8 @@
             crossorigin="anonymous"></script>
 
         <script src="/javascripts/validateForms.js"></script>
+
+
 </body>
 
 </html>

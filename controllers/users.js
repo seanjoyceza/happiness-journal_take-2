@@ -27,7 +27,8 @@ module.exports.renderLogin = (req, res) => {
 }
 
 module.exports.login = (req, res) => { //failure functions will run if failed
-    req.flash('success', 'Welcome back!') //will run if successful
+    const currentUser = req.user.fullname;
+    req.flash('success', `Welcome back, ${currentUser}!`) //will run if successful
     const redirectUrl = req.session.returnTo || '/entries';
     delete req.session.returnTo
     res.redirect(redirectUrl); //will run if successful
@@ -37,5 +38,5 @@ module.exports.login = (req, res) => { //failure functions will run if failed
 module.exports.logout = (req, res) => {
     req.logout();
     req.flash('success', 'Goodbey!')
-    res.redirect('/')
+    res.redirect('/login')
 }

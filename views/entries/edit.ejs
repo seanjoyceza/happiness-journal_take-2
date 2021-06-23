@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="body">Body</label>
-                    <textarea class="form-control" type="text" id="body" name="entry[body]" required><%= entry.body %></textarea>
+                    <textarea contenteditable="" class="form-control" type="text" id="body" name="entry[body]" required><%= entry.body %></textarea>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-info">Update Entry</button>
+                    <button class="btn btn-primary btn-block btn-login">Update Entry</button>
                 </div>
             </form>
             <a href="/entries/<%= entry._id %> ">Back to Entry</a>
