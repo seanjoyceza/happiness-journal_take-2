@@ -4,9 +4,11 @@ body {
 }
 
 .navbar-one {
-    padding: 12px 0;
-    background-color: #0b5ed7;
+    padding: 8px 0;
+    background-color: white;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
 }
+
 
 .navbar-two {
     padding: 8px 0;
@@ -15,82 +17,66 @@ body {
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%);
 }
 
+.navbar-brand {
+	color: #000;
+}
+
+.navbar.center .navbar-inner {
+    text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+    display:inline-block;
+    float: none;
+}
+
 .logout {
-    color: white;
+    color: black;
 }
 
 .login {
-    color: white;
+    color: black;
 }
 
 .btn-second-nav {
-    color: white;
+    color: black;
     background-color: #0b5ed7;
 }
-
-
-
-/* form > button {
-    background-color: #ffffff !important;
-    color: #6c757d !important;
-} */
-
-/* form > input {
-    background-color: #ffffff !important;
-    color: #6c757d !important;
-} */
-
-
-/* .image {
-    border-radius: .25em;
-} */
-
-
-/* h4 {
-    padding-top: 1rem;
-} */
-
-/* .homepage_entry {
-  padding-top: 1rem;
-  padding-bottom: 0rem; 
-} */
-
-/* .breadcrumb {
-    margin: auto;
-} */
 
 
 .rounded-pill {
     margin-left: 1em;
 }
 
+
 .logout:hover {
-    color: rgba(255,255,255);
-    border-bottom-color:rgba(255,0,0);
+    color: #000;
+	border-bottom: 1px solid red;
     border-radius: 0;
-    border-width: 1px;
 }
 
 .login:hover {
-    color: rgba(255,255,255);
-    border-bottom-color:rgba(255,255,255);
+   	color: #000;
+	border-bottom: 1px solid black;
     border-radius: 0;
-    border-width: 1px;
 }
 
-.nav-links:hover {
-    color: rgba(255,255,255);
-    border-bottom-color:rgba(255,255,255);
-    border-radius: 0;
-    border-width: 1px;
+.nav-link {
+	color: black;
 }
 
-.nav-links.active {
+.nav-link:hover {
+	color: #000;
+	border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+/* .nav-links.active {
     color: rgba(255,255,255);
     border-bottom-color:rgba(255,255,255);
     border-radius: 0;
     border-width: 1px;
-}
+} */
 
 .radios {
   font-size: 0.9em !important;

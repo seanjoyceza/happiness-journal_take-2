@@ -56,3 +56,4 @@ module.exports.deleteEntry = async (req, res) => {
     req.flash('success', 'Successfully deleted entry!')
     res.redirect('/entries')
 }
+

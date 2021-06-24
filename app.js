@@ -6,6 +6,7 @@ const ejsMate = require('ejs-mate')
 const ExpressError = require('./utils/ExpressError')
 const entryRoutes = require('./routes/entries')
 const userRoutes = require('./routes/users')
+const miscRoutes = require('./routes/misc')
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -73,6 +74,7 @@ app.use('/fakeuser', async (req, res) => {
 
 app.use('/entries', entryRoutes)
 app.use('/', userRoutes)
+app.use('/settings', miscRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
