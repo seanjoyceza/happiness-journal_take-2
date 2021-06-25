@@ -6,6 +6,7 @@ const EntrySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    date: String,
     date_num: String,
     subject: String,
     body: String,

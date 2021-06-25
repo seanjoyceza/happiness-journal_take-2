@@ -19,6 +19,7 @@ const seedDB = async () => {
     for (let i = 0; i < 3; i++) {
         const entry = new Entry({
             author: '60cada6cbbc20e26640cc242',
+            date: entries[i].date,
             date_num: entries[i].date_num,
             subject: entries[i].subject,
             body: entries[i].body,

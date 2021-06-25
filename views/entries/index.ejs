@@ -1,36 +1,39 @@
-<% layout('/layouts/boilerplate') %> 
+<% layout('/layouts/boilerplate') %>
 
+        <% if(!currentUser) { %>
+            <p>Log in to see your entries.</p>
+            <% } else {%>
+                <h1 class="text-center">All Entries</h1>
+                <% } %>
 
-<% if(!currentUser) { %>
-    <p>Log in to see your entries.</p>
-<% } else {%>
-<h1>All Entries</h1>
+                    <% let counter=0 %>
+                        <% for (let entry of entries) { %>
+                            <% if (currentUser && entry.author._id.equals(currentUser._id)) { %>
+                                <div class="card mb-3 col-10 offset-3">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h3 class="card-title">
+                                                    <%= entry.date %>
+                                                </h3>
+                                                <h5 class="card-title">
+                                                    <%= entry.subject %>
+                                                </h5>
+                                                <p class="card-text badge rounded-pill bg-danger mx-0">
+                                                    <%= entry.tag %>
+                                                </p>
+                                                <br>
+                                                <a href="entries/<%=entry._id%>"
+                                                    class="btn btn-primary btn-block btn-login">View <%=entry.subject%>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% counter++ %>
+                                    <% } %>
 
-<% } %>  
-
-<% let counter=0 %>
-<% for (let entry of entries) { %> 
-    <% if (currentUser && entry.author._id.equals(currentUser._id)) { %>
-        <div class="card mb-3">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= entry.date %></h5>
-                        <h5 class="card-title"><%= entry.subject %></h5>
-                        <p class="card-text badge rounded-pill bg-primary"><%= entry.tag %></p>
-                        <a href="entries/<%=entry._id%>" class="btn btn-primary btn-block btn-login">View <%=entry.subject%> </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <% counter++ %> 
-    <% } %> 
-
-<% } %>
-<% if (currentUser && counter == 0) { %>
-    <p>You have no entries.</p> 
-<% } %>  
-
-
-
-
+                                        <% } %>
+                                            <% if (currentUser && counter==0) { %>
+                                                <p>You have no entries.</p>
+                                                <% } %>
