@@ -9,8 +9,8 @@
                     <% let counter=0 %>
                         <% for (let entry of entries) { %>
                             <% if (currentUser && entry.author._id.equals(currentUser._id)) { %>
-                                <div class="card mb-3 col-10 offset-3">
-                                    <div class="row">
+                                <div class="card mb-3 col-10 offset-3 text-center">
+                                    <div class="row" style="justify-content: space-around;">
                                         <div class="col-md-8">
                                             <div class="card-body">
                                                 <h3 class="card-title">
@@ -37,3 +37,12 @@
                                             <% if (currentUser && counter==0) { %>
                                                 <p>You have no entries.</p>
                                                 <% } %>
+
+
+                                                <!-- <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Special title treatment</h5>
+                                                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                    </div>
+                                                </div> -->

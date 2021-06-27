@@ -3,6 +3,7 @@ const Joi = require('joi')
 module.exports.entrySchema = Joi.object({
     entry: Joi.object({
         date_num: Joi.required(),
+        date: Joi.string(),
         subject: Joi.string().required(),
         body: Joi.string().required(),
         rating: Joi.string().required(),

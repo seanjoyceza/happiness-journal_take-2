@@ -1,7 +1,11 @@
 <div class="container-fluid p-0">
     <nav class="navbar-one navbar navbar-expand-md navbar" id="navbar-one">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/entries">Happiness Journal</a>
+            <% if (!currentUser) { %>
+                <a class="navbar-brand" href="/login">Happiness Journal</a>
+            <% } else { %>
+                <a class="navbar-brand" href="/entries">Happiness Journal</a>
+            <% } %>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

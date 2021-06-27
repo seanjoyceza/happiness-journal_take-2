@@ -16,6 +16,7 @@ module.exports.createEntry = async (req, res, next) => {
     const entry = new Entry(req.body.entry);
     entry.author = req.user._id; //associates new campground with the current logged in user
     await entry.save();
+    console.log(req.body.entry)
     req.flash('success', 'Successfully made a new entry!')
     res.redirect(`/entries/${entry._id}`);
 }

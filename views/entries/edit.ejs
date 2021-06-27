@@ -1,16 +1,17 @@
 <% layout('/layouts/boilerplate') %>
 
     <div class="row">
-        <h1 class="text-center">New Entry</h1>
+        <h1 class="text-center">Edit Entry</h1>
         <div class="col-6 offset-3">
         <form action="/entries/<%=entry._id%>?_method=PUT" method="POST" novalidate class="validated-form">
                 <div class="mb-3">
                     <label class="form-label" for="date">Date</label>
-                    <input class="form-control" type="date" id="date" name="entry[date_num]" value="<%= entry.date_num %>" required
+                    <input class="form-control date-picker" type="date" id="date" name="entry[date_num]" value="<%= entry.date_num %>" required
                         min="2000-01-01" max="2100-12-31">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
+                    <p class="form-control date-string" type="text" id="date" name="entry[date]"><%= entry.date %></p>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="subject">Subject</label>

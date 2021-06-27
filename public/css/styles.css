@@ -301,3 +301,7 @@ ul {list-style-type: none;}
   display: block;
 }
 /* Modal End */
+
+textarea {
+  height: 300px;
+}
