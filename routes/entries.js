@@ -5,6 +5,9 @@ const { isLoggedIn, validateEntry, isOwner } = require('../middleware')
 const entries = require('../controllers/entries')
 
 //router.route consolidates all routes with different verbs
+router.route('/chart')
+    .get(isLoggedIn, catchAsync(entries.renderChart)) //show graph
+
 router.route('/')
     .get(catchAsync(entries.index)) //index
     .post(isLoggedIn, validateEntry, catchAsync(entries.createEntry)) //create entry

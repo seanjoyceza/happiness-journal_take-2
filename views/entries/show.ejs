@@ -1,31 +1,44 @@
 <% layout('/layouts/boilerplate') %>
-    <div class="row">
-        <div class="col-6 offset-3">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h3 class="card-title">
-                        <%= entry.date %>
-                    </h3>
-                    <h5 class="card-title">
-                        <%= entry.subject %>
-                    </h5>
-                    <p class="card-text">
-                        <%= entry.body %>
-                    </p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-muted">
-                        <%= entry.tag %>
-                    </li>
-                    <li class="list-group-item text-muted">
-                        <%= entry.rating %>
-                    </li>
-                </ul>
-                <div class="card-body">
-                    <a class="card-link btn btn-primary btn-block btn-login" href="/entries/<%= entry._id %>/edit ">Edit</a>
-                    <form class="d-inline" action="/entries/<%=entry._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
+    <div class="container d-flex justify-content-center">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <%= entry.date %>
+                </h3>
+                <h5 class="card-title">
+                    <%= entry.subject %>
+                </h5>
+                <div class="row">
+                    <div class="col mb-3">
+                        <p class="card-text">
+                            Tag: <span class="card-text badge rounded-pill bg-success mx-0">
+                                <%= entry.tag %>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">
+                            Rating: <span class="card-text mx-0">
+                                <%= entry.rating %>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col word-text">
+                            <%= entry.body %> 
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6 d-flex justify-content-center">
+                            <a class="card-link btn btn-primary btn-block btn-login" href="/entries/<%= entry._id %>/edit ">Edit</a>
+                        </div>
+                        <div class="col-6">
+                            <form class="d-inline d-flex justify-content-center" action="/entries/<%=entry._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>

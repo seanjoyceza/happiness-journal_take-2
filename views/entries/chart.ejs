@@ -1,0 +1,19 @@
+<% layout('/layouts/boilerplate') %>
+
+    <table class="charts-css line show-heading show-labels show-primary-axis show-10-secondary-axes show-data-axes show-data-on-hover" id="my-chart">
+        <caption> Happiness for 2021 </caption>
+
+        <tbody>
+            <% for (let i = 0; i < entries.length; i++) {%>
+                <tr>
+                    <th scope="row"> <%= entries[i].date.substring(4) %>  </th>
+                    <% if (i == 0) { %> 
+                        <td style="--start: 0.0; --size: 0.<%= entries[i].rating %>"> <span class="data"><%= entries[i].tag %></span> </td>
+                    <% } else{ %> 
+                        <td style="--start: 0.<%= entries[i-1].rating %>; --size: 0.<%= entries[i].rating %>"> <span class="data"><%= entries[i].tag %> </span> </td>
+                    <% } %> 
+                </tr>
+            <% } %>  
+        </tbody>
+
+    </table>

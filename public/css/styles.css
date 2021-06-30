@@ -305,3 +305,25 @@ ul {list-style-type: none;}
 textarea {
   height: 300px;
 }
+
+.word-text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Chart */
+#my-chart.line {
+    height: 300px;
+    margin: 0 auto;
+}
+
+#my-chart {
+  height: 200px;
+  --heading-size: 3rem;
+}
+#my-chart caption {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.25rem;
+  text-align: center;
+}

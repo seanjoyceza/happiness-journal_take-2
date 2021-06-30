@@ -6,6 +6,12 @@ module.exports.index = async (req, res) => {
     res.render('entries/index', { entries })
 }
 
+//chart view
+module.exports.renderChart = async (req, res) => {
+    const entries = await Entry.find({}).populate('author')
+    res.render('entries/chart', { entries })
+}
+
 //new entry
 module.exports.renderNewForm = (req, res) => {
     res.render('entries/new')
@@ -57,4 +63,3 @@ module.exports.deleteEntry = async (req, res) => {
     req.flash('success', 'Successfully deleted entry!')
     res.redirect('/entries')
 }
-

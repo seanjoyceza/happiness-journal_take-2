@@ -76,10 +76,6 @@ app.use('/entries', entryRoutes)
 app.use('/', userRoutes)
 app.use('/settings', miscRoutes)
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
-
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404)) //here we pass a ExpressError model to next so that we can use it below
 })

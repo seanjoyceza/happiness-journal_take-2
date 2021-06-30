@@ -12,7 +12,7 @@ if (datePicker) {
         const mon1 = parseInt(str1.substring(3, 5));
         const yr1 = parseInt(str1.substring(6, 10));
         const date1 = new Date(yr1, mon1 - 1, dt1).toDateString();
-        dateString.innerHTML = date1;
+        dateString.value = date1;
     })
 }
 
