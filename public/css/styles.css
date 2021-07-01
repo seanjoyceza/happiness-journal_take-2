@@ -34,6 +34,10 @@ body {
     color: black;
 }
 
+.settings {
+    color: black;
+}
+
 .login {
     color: black;
 }
@@ -52,6 +56,12 @@ body {
 .logout:hover {
     color: #000;
 	border-bottom: 1px solid red;
+    border-radius: 0;
+}
+
+.settings:hover {
+    color: #000;
+	border-bottom: 1px solid black;
     border-radius: 0;
 }
 

@@ -2,7 +2,18 @@ const Entry = require('../models/entry');
 
 //index page
 module.exports.index = async (req, res) => {
-    const entries = await Entry.find({}).populate('author')
+    let entries = await Entry.find({}).populate('author')
+
+    let userEntries_dateDes = entries;
+    //sort by date descending
+    entries.sort((a, b) => {
+        if (a.date_num > b.date_num) {
+            return -1;
+        } else {
+            return 1;
+        }
+    })
+    
     res.render('entries/index', { entries })
 }
 

@@ -17,6 +17,7 @@
                 <% if (!currentUser) { %> 
                 <a class="login btn" href="/login">Log In</a>
                 <% } else { %> 
+                <a class="settings btn" href="/settings">Settings</a>
                 <a class="logout btn" href="/logout">Log Out</a>
                 <% } %> 
             </div>
@@ -38,9 +39,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link isActive3" href="/entries/chart">Happiness Chart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link isActive3" href="/settings">Settings</a>
                 </li>
             </ul>
         </div>

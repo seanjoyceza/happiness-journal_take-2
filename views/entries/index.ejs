@@ -4,15 +4,31 @@
     <p>Log in to see your entries.</p>
 <% } else {%>
     <h1 class="text-center">All Entries</h1>
+
+    <div class="radios fs-6 container d-flex justify-content-center">
+        <div class="form-check">
+            <div class="form-check-inline">
+                <input class="form-check-input" type="radio" id="ascend" name="order" value="ascend">
+                <label class="form-check-label" for="ascend">Date Ascending</label>
+            </div>
+
+            <div div class="form-check-inline ps-2">
+                <input class="form-check-input" type="radio" id="descend" name="order" value="descend" checked="">
+                <label class="form-check-label checked" for="descend">Date Descending</label>
+            </div>
+        </div>
+        <hr>
+    </div>
 <% } %>
 
 <% let counter=0 %>                           
+<div class="list">
 <% for (let entry of entries) { %>
     <% if (currentUser && entry.author._id.equals(currentUser._id)) { %>
         <div class="container d-flex justify-content-center">
-            <div class="card mb-3" style="width: 50rem;">
+            <div class="card mb-3">
                 <div class="card-body">
-                    <h3 class="card-title"><%= entry.date %></h3>
+                    <h3 class="card-title"><%= entry.date %></h3> <small hidden><%= entry.date_num %> </small>
                     <h5 class="card-title"><%= entry.subject %></h5>
                     <div class="row">
                         <div class="col mb-3">
@@ -35,6 +51,7 @@
         <% counter++ %>
     <% } %>
 <% } %>
+</div> 
 
 <% if (currentUser && counter==0) { %>
     <p>You have no entries.</p>
