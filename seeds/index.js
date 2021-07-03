@@ -16,7 +16,7 @@ db.once("open", () => {
 
 const seedDB = async () => {
     await Entry.deleteMany({});
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
         const entry = new Entry({
             author: '60cada6cbbc20e26640cc242',
             date: entries[i].date,

@@ -3,8 +3,6 @@ const Entry = require('../models/entry');
 //index page
 module.exports.index = async (req, res) => {
     let entries = await Entry.find({}).populate('author')
-
-    let userEntries_dateDes = entries;
     //sort by date descending
     entries.sort((a, b) => {
         if (a.date_num > b.date_num) {
@@ -13,13 +11,22 @@ module.exports.index = async (req, res) => {
             return 1;
         }
     })
-    
+
     res.render('entries/index', { entries })
 }
 
 //chart view
 module.exports.renderChart = async (req, res) => {
     const entries = await Entry.find({}).populate('author')
+
+    entries.sort((a, b) => {
+        if (a.date_num < b.date_num) {
+            return -1;
+        } else {
+            return 1;
+        }
+    })
+
     res.render('entries/chart', { entries })
 }
 

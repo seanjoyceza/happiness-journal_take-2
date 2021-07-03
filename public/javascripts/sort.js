@@ -24,7 +24,7 @@ function sortingAscDate() {
     divCard = Array.prototype.slice.call(divCard);
     // Sort this new array using .sort
     divCard.sort(function (a, b) {
-        if (a.children[0].children[0].children[1] < b.children[0].children[0].children[1]) {
+        if (a.children[0].children[0].children[1].innerText < b.children[0].children[0].children[1].innerText) {
             return -1;
         } else {
             return 1;
@@ -44,7 +44,7 @@ function sortingDesDate() {
 
     divCard = Array.prototype.slice.call(divCard);
     divCard.sort(function (a, b) {
-        if (a.children[0].children[0].children[1] > b.children[0].children[0].children[1]) {
+        if (a.children[0].children[0].children[1].innerText > b.children[0].children[0].children[1].innerText) {
             return -1;
         } else {
             return 1;
