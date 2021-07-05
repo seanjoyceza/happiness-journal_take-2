@@ -1,57 +1,57 @@
-<% layout('/layouts/boilerplate') %>
-    <div class="radios fs-6 container d-flex justify-content-center">
-        <div class="form-check">
-            <div class="form-check-inline">
-                <label for="years">Year:</label>
-                <select name="years" id="years">
-                    <option value="">All</option>
-                    <% for (let i=0; i < entries.length; i++) {%>
-                        <% if (i !=0 && entries[i].date_num.substring(0, 4)===entries[i-1].date_num.substring(0, 4) ) { %>
-                        <% } else {%>
-                        <option value=""><%= entries[i].date_num.substring(0, 4) %></option>
-                        <% } %>
+<% layout('/layouts/boilerplate') %> 
+<div class="radios fs-6 container d-flex justify-content-center">
+    <div class="form-check">
+        <div class="form-check-inline">
+            <label for="years">Year:</label>
+            <select name="years" id="years">
+                <option class="display_filter">All</option>
+                <% for (let i=0; i < entries.length; i++) {%>
+                    <% if (i !=0 && entries[i].date_num.substring(0, 4)===entries[i-1].date_num.substring(0, 4) ) { %>
+                    <% } else {%>
+                    <option class="display_filter" value="<%= entries[i].date_num.substring(0,4) %>"><%= entries[i].date_num.substring(0, 4) %></option>
                     <% } %>
-                </select>
-            </div>
-
-            <div class="form-check-inline">
-                <label for="month">Month:</label>
-                <select name="month" id="month">
-                    <option value="">All</option>
-                    <option value="">January</option>
-                    <option value="">February</option>
-                    <option value="">March</option>
-                    <option value="">April</option>
-                    <option value="">May</option>
-                    <option value="">June</option>
-                    <option value="">July</option>
-                    <option value="">August</option>
-                    <option value="">September</option>
-                    <option value="">October</option>
-                    <option value="">November</option>
-                    <option value="">December</option>                    
-                </select>
-            </div>
-    
+                <% } %>
+            </select>
         </div>
-        <hr>
+
+        <div class="form-check-inline">
+            <label for="month">Month:</label>
+            <select name="month" id="month">
+                <option value="">All</option>
+                <option value="">January</option>
+                <option value="">February</option>
+                <option value="">March</option>
+                <option value="">April</option>
+                <option value="">May</option>
+                <option value="">June</option>
+                <option value="">July</option>
+                <option value="">August</option>
+                <option value="">September</option>
+                <option value="">October</option>
+                <option value="">November</option>
+                <option value="">December</option>                    
+            </select>
+        </div>
+
     </div>
-
     <hr>
-    <table class="charts-css line show-heading show-labels show-primary-axis show-10-secondary-axes show-data-axes show-data-on-hover" id="my-chart">
-        <caption> Happiness Chart </caption>
+</div>
 
-        <tbody>
-            <% for (let i = 0; i < entries.length; i++) {%>
-                <tr>
-                    <th scope="row"> <%= entries[i].date.substring(4) %>  </th>
-                    <% if (i == 0) { %> 
-                        <td style="--start: 0.0; --size: 0.<%= entries[i].rating %>"> <span class="data"><%= entries[i].tag %></span> </td>
-                    <% } else{ %> 
-                        <td style="--start: 0.<%= entries[i-1].rating %>; --size: 0.<%= entries[i].rating %>"><span class="data"><%= entries[i].tag %> </span> </td>
-                    <% } %> 
-                </tr>
-            <% } %>  
-        </tbody>
+<hr>
+<table class="charts-css line show-heading show-labels show-primary-axis show-10-secondary-axes show-data-axes show-data-on-hover" id="my-chart">
+    <caption> Happiness Chart </caption>
 
-    </table>
+    <tbody class="chart_body">
+        <% for (let i = 0; i < entries.length; i++) {%>
+            <tr class="chart_row">
+                <th scope="row"> <%= entries[i].date.substring(4) %>  </th>
+                <% if (i == 0) { %> 
+                    <td style="--start: 0.0; --size: 0.<%= entries[i].rating %>"> <span class="data"><%= entries[i].tag %></span> </td>
+                <% } else{ %> 
+                    <td style="--start: 0.<%= entries[i-1].rating %>; --size: 0.<%= entries[i].rating %>"><span class="data"><%= entries[i].tag %> </span> </td>
+                <% } %> 
+            </tr>
+        <% } %>  
+    </tbody>
+
+</table>
