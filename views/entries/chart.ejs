@@ -1,46 +1,53 @@
 <% layout('/layouts/boilerplate') %> 
 <div class="radios fs-6 container d-flex justify-content-center">
-    <div class="form-check">
-        <div class="form-check-inline">
-            <label for="years">Year:</label>
-            <select name="years" id="years">
-                <option class="display_filter">All</option>
-                <% for (let i=0; i < entries.length; i++) {%>
-                    <% if (i !=0 && entries[i].date_num.substring(0, 4)===entries[i-1].date_num.substring(0, 4) ) { %>
-                    <% } else {%>
-                    <option class="display_filter" value="<%= entries[i].date_num.substring(0,4) %>"><%= entries[i].date_num.substring(0, 4) %></option>
-                    <% } %>
+    <div class="dropdown me-3">
+        <button class="btn btn-primary dropdown-toggle show-button-one" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            All Years
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li class="dropdown-one-item"><a class="dropdown-item" href="#">All Years</a></li>
+            <% for (let i=0; i < entries.length; i++) {%>
+                <% if (i !=0 && entries[i].date_num.substring(0, 4)===entries[i-1].date_num.substring(0, 4) ) { %>
+                <% } else {%>
+                    <li class='dropdown-one-item'><a class="dropdown-item" href="#"><%= entries[i].date_num.substring(0, 4) %></a></li>
                 <% } %>
-            </select>
-        </div>
+            <% } %>
+        </ul>
+    </div>
 
-        <div class="form-check-inline">
-            <label for="month">Month:</label>
-            <select name="month" id="month">
-                <option value="">All</option>
-                <option value="">January</option>
-                <option value="">February</option>
-                <option value="">March</option>
-                <option value="">April</option>
-                <option value="">May</option>
-                <option value="">June</option>
-                <option value="">July</option>
-                <option value="">August</option>
-                <option value="">September</option>
-                <option value="">October</option>
-                <option value="">November</option>
-                <option value="">December</option>                    
-            </select>
-        </div>
-
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle show-button-two" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            All Months
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">All Months</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">January</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">February</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">March</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">April</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">May</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">June</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">July</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">August</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">September</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">October</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">November</a></li>
+            <li class="dropdown-two-item"><a class="dropdown-item" href="#">December</a></li>
+        </ul>
     </div>
     <hr>
 </div>
 
 <hr>
 <table class="charts-css line show-heading show-labels show-primary-axis show-10-secondary-axes show-data-axes show-data-on-hover" id="my-chart">
-    <caption> Happiness Chart </caption>
-
+    <caption class="caption"> Happiness Chart </caption>
+    <br>
+    <p class="no-data" hidden> No data. </p> 
+    <% if (entries.length == 0) { %> 
+            <p class="no-data"> No data. </p>
+    <% } %> 
     <tbody class="chart_body">
         <% for (let i = 0; i < entries.length; i++) {%>
             <tr class="chart_row">
