@@ -51,7 +51,7 @@
     <tbody class="chart_body">
         <% for (let i = 0; i < entries.length; i++) {%>
             <tr class="chart_row">
-                <th scope="row"> <%= entries[i].date.substring(4) %>  </th>
+                <th scope="row" class="d-md-flex pt-md-5 pt-lg-0" style="display:none"> <%= entries[i].date.substring(4) %>  </th>
                 <% if (i == 0) { %> 
                     <td style="--start: 0.0; --size: 0.<%= entries[i].rating %>"> <span class="data"><%= entries[i].tag %></span> </td>
                 <% } else{ %> 
