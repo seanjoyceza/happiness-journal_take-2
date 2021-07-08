@@ -9,19 +9,17 @@ const caption = document.querySelector('.caption')
 
 for (dropdownOneItem of dropdownOneItems) {
     dropdownOneItem.addEventListener("click", (event) => {
-        showButtonOne.innerHTML = event.path[0].innerHTML;
-        let counter = 0;
         for (i = 0; i < chartRows.length; i++) {
-            chartRows[i].removeAttribute('hidden')
-            if (chartRows[i].innerText.substring(7, 11) != showButtonOne.innerHTML) {
-                chartRows[i].setAttribute('hidden', '')
-                counter++;
+            chartRows[i].style.display = ""
+        }
+        showButtonOne.innerText = event.path[0].innerHTML;
+        for (i = 0; i < chartRows.length; i++) {
+            if (showButtonTwo.innerText != 'All Months') {
+                showButtonTwo.innerText = 'All Months'
             }
-            if (showButtonOne.innerHTML == 'All Years') {
-                chartRows[i].removeAttribute('hidden')
-            }
-            if (counter == 0) {
-                noData.setAttribute('hidden', '')
+            if (chartRows[i].innerText.substring(7, 11) != showButtonOne.innerText.substring(0, 9) &&
+                showButtonOne.innerText.substring(0, 9) != 'All Years') {
+                chartRows[i].style.display = "none";
             }
         }
     })
@@ -30,24 +28,27 @@ for (dropdownOneItem of dropdownOneItems) {
 
 for (dropdowntwoItem of dropdowntwoItems) {
     dropdowntwoItem.addEventListener("click", (event) => {
-        showButtonTwo.innerHTML = event.path[0].innerHTML;
         let counter = 0;
         for (i = 0; i < chartRows.length; i++) {
-            chartRows[i].removeAttribute('hidden')
-            if (chartRows[i].innerText.substring(0, 3) != showButtonTwo.innerHTML.substring(0, 3)) {
-                chartRows[i].setAttribute('hidden', '')
+            chartRows[i].style.display = ""
+        }
+
+        showButtonTwo.innerText = event.path[0].innerHTML;
+        // let counter = 0;
+        for (i = 0; i < chartRows.length; i++) {
+            if (showButtonOne.innerText != 'All Years') {
+                showButtonOne.innerText = 'All Years'
+            }
+            if (chartRows[i].innerText.substring(0, 3) != showButtonTwo.innerText.substring(0, 3) &&
+                showButtonTwo.innerText != 'All Months') {
+                chartRows[i].style.display = "none"
+                showButtonOne.innerText = 'All Years'
                 counter++;
             }
-            if (showButtonTwo.innerHTML.substring(0, 10) == 'All Months') {
-                chartRows[i].removeAttribute('hidden')
-            }
-            if (counter == chartRows.length && showButtonTwo.innerHTML.substring(0, 10) !== 'All Months') {
-                noData.removeAttribute('hidden')
-                caption.setAttribute('hidden', '')
-            } else {
-                noData.setAttribute('hidden', '')
-                caption.removeAttribute('hidden')
-            }
+        }
+        if (counter == chartRows.length) {
+            noData.style.display = ""
+            caption.style.display = "none"
         }
     })
 }

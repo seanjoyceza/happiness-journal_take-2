@@ -25,7 +25,7 @@
 <div class="list">
 <% for (let entry of entries) { %>
     <% if (currentUser && entry.author._id.equals(currentUser._id)) { %>
-        <div class="container d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
             <div class="card mb-3">
                 <div class="card-body">
                     <h3 class="card-title"><%= entry.date %></h3> <small hidden><%= entry.date_num %> </small>

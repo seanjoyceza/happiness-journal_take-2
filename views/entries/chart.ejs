@@ -44,10 +44,7 @@
 <table class="charts-css line show-heading show-labels show-primary-axis show-10-secondary-axes show-data-axes show-data-on-hover" id="my-chart">
     <caption class="caption"> Happiness Chart </caption>
     <br>
-    <p class="no-data" hidden> No data. </p> 
-    <% if (entries.length == 0) { %> 
-            <p class="no-data"> No data. </p>
-    <% } %> 
+    <p class="no-data" style="display: none;"> No data. </p>
     <tbody class="chart_body">
         <% for (let i = 0; i < entries.length; i++) {%>
             <tr class="chart_row">

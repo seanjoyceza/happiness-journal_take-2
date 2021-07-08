@@ -261,7 +261,7 @@ ul {list-style-type: none;}
 }
 
 .card {
-    max-width: 400px;
+    width: 30em;
 }
 
 /* Modal Start */
