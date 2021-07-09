@@ -1,8 +1,10 @@
 const displayFilter = document.querySelectorAll('.display_filter')
+const dropdownThreeItems = document.querySelectorAll('.dropdown-three-item')
 const dropdowntwoItems = document.querySelectorAll('.dropdown-two-item')
 const dropdownOneItems = document.querySelectorAll('.dropdown-one-item')
 const showButtonOne = document.querySelector('.show-button-one')
 const showButtonTwo = document.querySelector('.show-button-two')
+const showButtonThree = document.querySelector('.show-button-three')
 const chartRows = document.querySelectorAll('.chart_row')
 const noData = document.querySelector('.no-data')
 const caption = document.querySelector('.caption')
@@ -52,3 +54,22 @@ for (dropdowntwoItem of dropdowntwoItems) {
         }
     })
 }
+
+for (dropdownThreeItem of dropdownThreeItems) {
+    dropdownThreeItem.addEventListener("click", (event) => {
+        for (i = 0; i < chartRows.length; i++) {
+            chartRows[i].style.display = ""
+        }
+        showButtonThree.innerText = event.path[0].innerText;
+        for (i = 0; i < chartRows.length; i++) {
+            // if (showButtonTwo.innerText != 'All Tags') {
+            //     showButtonTwo.innerText = 'All Tags'
+            // }
+            if (chartRows[i].innerText.substring(12) != showButtonThree.innerText &&
+                showButtonThree.innerText != 'All Tags') {
+                chartRows[i].style.display = "none";
+            }
+        }
+    })
+}
+

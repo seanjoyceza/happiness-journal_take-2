@@ -1,7 +1,8 @@
 <% layout('/layouts/boilerplate') %> 
 <div class="radios fs-6 container d-flex justify-content-center">
+
     <div class="dropdown me-3">
-        <button class="btn btn-primary dropdown-toggle show-button-one" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        <button class="btn btn-primary dropdown-toggle show-button-one btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
             aria-expanded="false">
             All Years
         </button>
@@ -16,7 +17,7 @@
         </ul>
     </div>
 
-    <div class="dropdown">
+    <div class="dropdown me-3">
         <button class="btn btn-primary dropdown-toggle show-button-two" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
             aria-expanded="false">
             All Months
@@ -37,8 +38,37 @@
             <li class="dropdown-two-item"><a class="dropdown-item" href="#">December</a></li>
         </ul>
     </div>
-    <hr>
-</div>
+
+    <div class="dropdown me-3">
+        <button class="btn btn-primary dropdown-toggle show-button-three" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            All Tags
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+            <li class="dropdown-three-item"><a class="dropdown-item" href="#">All Tags</a></li>
+
+            <% let arrayA = []; %> 
+            <% let arrayB=[]; %>
+            <% for (let i=0; i < entries.length; i++) {%>
+                <% arrayA.push(entries[i].tag) %>
+            <% } %> 
+
+            <% arrayA.filter((item, index) => { %>
+                <% if (arrayA.indexOf(item) === index == true) { %>
+                <% arrayB.push(item) %>
+                <% } %>
+            <% }); %>
+            <% console.log(arrayB) %>
+
+            <% for (let i=0; i < arrayB.length; i++) {%>
+                    <li class='dropdown-three-item'><a class="dropdown-item" href="#">
+                            <%= arrayB[i] %>
+                        </a></li>
+                <% } %>
+                </ul>
+            </div>
+    </div>
+
 
 <hr>
 <table class="charts-css line show-heading show-labels show-primary-axis show-10-secondary-axes show-data-axes show-data-on-hover" id="my-chart">
@@ -59,3 +89,5 @@
     </tbody>
 
 </table>
+
+
