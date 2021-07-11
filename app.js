@@ -111,6 +111,8 @@ app.use((err, req, res, next) => { //all erros will be thrown in here with it's 
     res.status(statusCode).render('error', { err }); //add status code to console, and redner the edit screen
 })
 
-app.listen(3000), () => {
-    console.log('Serving on port 3000')
+const port = process.env.PORT || 3000;
+
+app.listen(port), () => {
+    console.log(`Serving on port ${port}`)
 }
