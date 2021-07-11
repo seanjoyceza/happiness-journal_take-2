@@ -19,8 +19,14 @@ const LocalStrategy = require('passport-local')
 const User = require('./models/user')
 const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
+const dbUrl = process.env.DB_URL
+const MongoStore = require('connect-mongo');
 
-mongoose.connect('mongodb://localhost:27017/happiness-journal', {
+
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/happiness-journal';
+
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -44,10 +50,16 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(mongoSanitize())
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret'
 
+//session + cookie
 const sessionConfig = {
+    store: MongoStore.create({
+        mongoUrl: dbUrl,
+        touchAfter: 24 * 60 * 60
+    }),
     name: 'session',
-    secret: 'thisshouldbeabettersecret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
